@@ -1,8 +1,7 @@
 from golang as builder
-WORKDIR /go/src
-RUN echo "hello" > hello.docker
+RUN apk add --no-cache git 
+RUN go get -d k8s.io/kubernetes
 
-FROM alpine:latest  
+FROM scratch
 WORKDIR /root/
-COPY --from=builder /go/src/hello.docker .
-CMD ["cat","hello.docker"]  
+COPY --from=builder /go/src/ .
