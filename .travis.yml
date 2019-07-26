@@ -11,7 +11,7 @@ services:
 
 
 before_install:
-  - docker build -t k8src .
+  - docker build -t ${DOCKER_USER}/${IMAGE} .
 
 install:
   - echo "install"
@@ -19,7 +19,7 @@ install:
 script:
   - echo "$DOCKER_PWD" | docker login -u "${DOCKER_USER}" --password-stdin
   - docker images
-  - docker push k8src
+  - docker push ${DOCKER_USER}/${IMAGE} 
 
 after_success:
   - echo "after_success"
