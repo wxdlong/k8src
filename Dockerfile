@@ -1,4 +1,4 @@
-from golang as builder
+from golang:alpine as builder
 RUN apk add --no-cache git 
 RUN go get -d k8s.io/kubernetes
 
